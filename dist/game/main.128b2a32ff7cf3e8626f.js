@@ -1,0 +1,2 @@
+webpackJsonp([0],[function(t,n,o){"use strict";var e=o(1);console.log(new e),console.log(123)},function(t,n,o){"use strict";var e=o(2),s=function(t){return t&&t.__esModule?t:{default:t}}(e);t.exports=function t(n){(0,s.default)(this,t),this.a=n}}],[0]);
+//# sourceMappingURL=main.128b2a32ff7cf3e8626f.js.map
