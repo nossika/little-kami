@@ -20,8 +20,8 @@ let grids = [
     [1, 1, 1, 1, 2, 2, 2, 1, 1, 1],
     [1, 1, 1, 1, 1, 2, 1, 1, 1, 1],
     [1, 1, 3, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 3, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 3, 1, 0, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 2, 2, 2, 1, 1, 1],
     [1, 1, 1, 1, 1, 2, 1, 1, 1, 1],
     [1, 1, 3, 1, 1, 1, 1, 1, 1, 1],
@@ -39,6 +39,11 @@ let kami = new Kami({
 });
 
 kami.mount(canvas);
+
+canvas.addEventListener('click', e => {
+    let [x, y] = kami.getNodePos(e.offsetX / canvas.offsetWidth, e.offsetY / canvas.offsetHeight);
+    console.log(grids[y][x], [x, y]);
+});
 
 console.log(kami);
 

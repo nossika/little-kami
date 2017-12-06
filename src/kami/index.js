@@ -69,12 +69,21 @@ module.exports = class Kami {
                 ctx.closePath();
             });
         });
-        console.log(nodeWidth, nodeHeight);
     }
-    nodePosOnCanvas (offsetX, offsetY) {
-        if (!this.canvas) return;
-        const canvasWidth = this.canvas.width;
-        const canvasHeight = this.canvas.height;
+    getNodePos (percentX, percentY) {
+        const areaWidth = 1 / this.grids[0].length;
+        const areaHeight = (1 / ((this.grids.length - 1)));
+
+        let areaX = percentX / areaWidth | 0;
+        let areaOffsetXPercent = percentX / areaWidth - areaX;
+        let areaY = percentY / areaHeight | 0;
+        let areaOffsetYPercent = 1 - (percentY / areaHeight - areaY);
+
+        let isUpHalf = (areaX + areaY) & 1 ? (1 - areaOffsetXPercent) < areaOffsetYPercent : areaOffsetXPercent < areaOffsetYPercent;
+
+        let x = areaX;
+        let y = isUpHalf ? areaY : areaY + 1;
+        return [x, y];
     }
     tapAndRender (nodePos) {
         if (!this.canvas) return;
