@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = Object.assign({}, baseConfig, {
     entry: {
-        main: path.resolve(__dirname, '../src/main'),
+        main: path.resolve(__dirname, '../src/game'),
     },
     output: {
         path: path.resolve(__dirname, '../dist/game'),

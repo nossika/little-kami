@@ -1,2 +1,0 @@
-webpackJsonp([1],{2:function(n,a,o){"use strict";a.__esModule=!0,a.default=function(n,a){if(!(n instanceof a))throw new TypeError("Cannot call a class as a function")}}});
-//# sourceMappingURL=vendor.128b2a32ff7cf3e8626f.js.map
