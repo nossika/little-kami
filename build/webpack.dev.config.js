@@ -4,10 +4,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = Object.assign({}, baseConfig, {
     entry: {
-        main: path.resolve(__dirname, '../src/game'),
+        main: path.resolve(__dirname, '../src/example'),
     },
     output: {
-        path: path.resolve(__dirname, '../dist/game'),
+        path: path.resolve(__dirname, '../dist/example'),
         filename: '[name].[hash].js',
         chunkFilename: 'chunk.[name].[hash].js',
     },
@@ -19,7 +19,7 @@ const config = Object.assign({}, baseConfig, {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.html'),
+            template: path.resolve(__dirname, '../src/example/index.html'),
             inject: 'body',
         }),
         new webpack.HotModuleReplacementPlugin(),

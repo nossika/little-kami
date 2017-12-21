@@ -7,10 +7,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = Object.assign({}, baseConfig, {
     entry: {
-        main: path.resolve(__dirname, '../src/game'),
+        main: path.resolve(__dirname, '../src/example'),
     },
     output: {
-        path: path.resolve(__dirname, '../dist/game'),
+        path: path.resolve(__dirname, '../dist/example'),
         filename: '[name].[hash].js',
         chunkFilename: 'chunk.[name].[hash].js',
     },
@@ -67,11 +67,11 @@ module.exports = Object.assign({}, baseConfig, {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, '../src/index.html'),
+            template: path.resolve(__dirname, '../src/example/index.html'),
             inject: 'body',
         }),
         new CleanWebpackPlugin(
-            [path.resolve(__dirname, '../dist/game') + '/*'],
+            [path.resolve(__dirname, '../dist/example') + '/*'],
             {
                 root: path.resolve(__dirname, '../'),
                 verbose:  true,

@@ -7,13 +7,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = Object.assign({}, baseConfig, {
     entry: {
-        main: path.resolve(__dirname, '../src/kami'),
+        core: path.resolve(__dirname, '../src/kami/kami-core'),
+        browser: path.resolve(__dirname, '../src/kami/kami-extend'),
     },
     output: {
         path: path.resolve(__dirname, '../dist/kami'),
-        filename: 'Kami.js',
+        filename: 'Kami.[name].js',
         library: 'Kami',
         libraryTarget: 'umd',
+        umdNamedDefine: true,
     },
     module: {
         rules: [

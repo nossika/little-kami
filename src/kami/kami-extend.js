@@ -9,24 +9,24 @@ export default class Kami extends KamiCore {
             lines,
         } = {}) {
         this._canvas = canvas;
-        colors = colors || this._colors || Kami.defaultColors;
-        lines = lines || this._lines || Kami.defaultLines;
+        colors = colors || this.colors || Kami.defaultColors;
+        lines = lines || this.lines || Kami.defaultLines;
         this.setStyles({ colors, lines });
         this.render();
     }
 
     // 改变节点样式
     setStyles ({ node, colors, lines }) {
-        this._colors = colors || this._colors;
-        this._lines = lines || this._lines;
+        this.colors = colors || this.colors;
+        this.lines = lines || this.lines;
         if (node) {
-            node.color = this._colors[node.type] || '';
-            node.line = typeof this._lines === 'object' ? this._lines[node.type] : (node.type ? this._lines : '');
+            node.color = this.colors[node.type] || '';
+            node.line = typeof this.lines === 'object' ? this.lines[node.type] : (node.type ? this.lines : '');
         } else {
             this.nodeGrids.forEach(row => {
                 row.forEach(node => {
-                    node.color = this._colors[node.type] || '';
-                    node.line = typeof this._lines === 'object' ? this._lines[node.type] : (node.type ? this._lines : '');
+                    node.color = this.colors[node.type] || '';
+                    node.line = typeof this.lines === 'object' ? this.lines[node.type] : (node.type ? this.lines : '');
                 });
             });
         }
@@ -87,3 +87,5 @@ export default class Kami extends KamiCore {
         return this.nodeGrids[y][x];
     }
 }
+
+module.exports = Kami;
