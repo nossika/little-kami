@@ -69,7 +69,7 @@ export default class KamiCore {
             nodes.forEach(node => {
                 traveledNodes.add(node);
                 node.type = targetType;
-                typeof this.setStyles === 'function' && this.setStyles({ node });
+                this._inBrowser && this.setStyles({ node });
                 for (let linkNode of node._linkNodes) {
                     if (!traveledNodes.has(linkNode) && linkNode.type === originalType) {
                         nextNodes.add(linkNode);
@@ -80,13 +80,13 @@ export default class KamiCore {
             if (nodes.size) {
                 if (delay) {
                     delay = delay / 10 * 9;
-                    typeof this.render === 'function' && this.render();
+                    this._inBrowser && this.render();
                     setTimeout(spread, delay);
                 } else {
                     spread();
                 }
             } else {
-                typeof this.render === 'function' && this.render();
+                this._inBrowser && this.render();
                 onEnd && onEnd({
                     result: this.checkConsistency(),
                     tapCount: this._tapCount,
@@ -94,6 +94,18 @@ export default class KamiCore {
             }
         };
         spread();
+    }
+
+    singleTap (node, nodeType) {
+        node.type = nodeType;
+        if (this._inBrowser) {
+            this.setStyles({ node });
+            this.render();
+        }
+    }
+
+    getGrids () {
+        return this.nodeGrids.map(arr => arr.map(node => node.type));
     }
 
     reset () {

@@ -8,6 +8,7 @@ export default class Kami extends KamiCore {
             colors,
             lines,
         } = {}) {
+        this._inBrowser = true;
         this._canvas = canvas;
         colors = colors || this.colors || Kami.defaultColors;
         lines = lines || this.lines || Kami.defaultLines;

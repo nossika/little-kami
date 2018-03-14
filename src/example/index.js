@@ -5,18 +5,17 @@ import gridsData from './grids';
 let gridsIndex = 0;
 
 function initPage () {
-    let grids = gridsData[gridsIndex].grids;
-    let limit = gridsData[gridsIndex].limit;
-
+    const { grids, limit, styles = {} } = gridsData[gridsIndex];
     const kami = new Kami({
         grids,
+        colors: styles.colors,
+        lines: styles.lines,
     });
-
     const canvasContainerEl = document.querySelector('#canvas-wrapper');
     const colorsContainerEl = document.querySelector('#colors-wrapper');
     const tipContainerEl = document.querySelector('#tips-wrapper');
 
-    canvasContainerEl.innerHTML = `<canvas width="300" height="400"></canvas>`;
+    canvasContainerEl.innerHTML = `<canvas class="canvas" width="300" height="500"></canvas>`;
 
     colorsContainerEl.innerHTML = '';
     kami.types.forEach(type => {
@@ -47,20 +46,26 @@ function initPage () {
     const canvasEl = canvasContainerEl.querySelector('canvas');
 
     canvasEl.addEventListener('click', e => {
-
         let node = kami.getNodeByOffset(e.offsetX / canvasEl.offsetWidth, e.offsetY / canvasEl.offsetHeight);
+
         kami.tap(node, curType, {
             onEnd ({ result, tapCount }) {
                 if (result) {
                     gridsIndex++;
                     if (gridsIndex >= gridsData.length) {
-                        alert(`已完成所有`);
+                        setTimeout(() => {
+                            alert(`已通过所有关卡~！`);
+                        }, 50);
                         return;
                     }
-                    alert(`完成`);
+                    setTimeout(() => {
+                        alert(`通过~！（当前进度：${gridsIndex}/${gridsData.length}）`);
+                    }, 50);
                     initPage();
-                } else if (tapCount > limit) {
-                    alert(`失败`);
+                } else if (tapCount >= limit) {
+                    setTimeout(() => {
+                        alert(`失败...别灰心，再试一下`);
+                    }, 50);
                     kami.reset();
                 }
             },
